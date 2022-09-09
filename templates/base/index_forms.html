@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+
+{% block scripts%}
+{% endblock%}
+
+{% block title%}
+
+{% endblock%}
+
+{% block button1%}
+<button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('index') }}'">
+    <i class="far fa-arrow-alt-circle-left"></i>Back
+</button>
+{% endblock%}
+
+{% block button2%}
+<button type="button" class="btn btn-primary" {% block button_new%}{% endblock%}>
+    <i class="fas fa-pen"></i>New
+</button>
+{% endblock%}
+
+{% block content %}
+<div id="loading" style="display: none">
+    <center>
+        <img src="{{ url_for('static', filename='image/processing.gif')}}" width="150" height="75">
+    </center>
+</div>
+<form>
+    <table id="datatablesSimple" class="table-responsive-sm table-dark table-striped">
+        {% if object_list%}
+        <thead>
+            <tr>
+                {% for key in object_list.0 %}
+                    {% if key != 'id'%}
+                        <th>
+                            {{key.upper()}}
+                        </th>
+                    {% endif %}
+                {% endfor %}
+                {% block table_header_actions %}
+
+                {% endblock %}
+            </tr>
+        </thead>
+        <tbody>
+            {% block table_rows %}
+            {% endblock %}
+        </tbody>
+        {% else %}
+        No records
+    {% endif %}
+    </table>
+</form>
+{% endblock %}
+
+{% block extrajs%}
+<!--    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>-->
+<script src="{{url_for('static', filename='js/simple-datatables@latest.js')}}" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='js/datatables-simple-demo.js')}}"></script>
+{% block extrajs2 %}
+{% endblock %}
+{% endblock %}

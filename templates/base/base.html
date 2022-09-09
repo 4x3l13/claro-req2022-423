@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claro Reports</title>
+    <link rel='stylesheet' href= "{{url_for('static', filename='css/styles.css')}}"/>
+    <link rel='stylesheet' href= "{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
+<!--    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />-->
+    {% block extracss %}
+    {% endblock %}
+    <script src="{{url_for('static', filename='js/font-awesome5.15.3.all.min.js')}}" crossorigin="anonymous"></script>
+    {% block scripts%}
+    {% endblock %}
+</head>
+<body >
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand -->
+        <a class="navbar-brand ps-3" href="{{ url_for('index') }}">Home</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <!-- <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" /> -->
+                <!-- <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button> -->
+            </div>
+        </form>
+        <!-- Navbar -->
+
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>{{session['user']}}</a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    {% if 'user' not in session %}
+                        <li><a class="dropdown-item" href="{{ url_for('users.login') }}">Login</a></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Interfaz</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDataBases" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa fa-database"></i></div>
+                            Databases
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseDataBases" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ url_for('databases.index') }}">To list</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa fa-file-excel"></i></div>
+                            Reports
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ url_for('reports.index') }}">To list</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
+                            Users
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ url_for('users.index') }}">To list</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages%}
+                            <div class="alert alert-success" role="alert">
+                                {{message}}
+                            </div>
+                        {% endfor%}
+                    {% endif %}
+                {% endwith %}
+                <div class="container-fluid px-4">
+                    <div class="row">
+                        <div class="col-10">
+                            <h4 class="mt-4">
+                                {% block title %}
+                                Dashboard
+                                {% endblock %}
+                            </h4>
+                        </div>
+                        <div class="col-1">
+                        {% block button1 %}
+                        {% endblock %}
+                        </div>
+                        <div class="col-1">
+                        {% block button2 %}
+                        {% endblock %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                            {% block content %}
+                            <h4>Content</h4>
+                            {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="bg-light text-center text-lg-start">
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);">
+                  © 2022 Copyright:
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    {% block extrajs %}
+    {% endblock %}
+</body>
+</html>

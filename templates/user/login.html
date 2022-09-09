@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Claro Automatisms</title>
+    <link rel='stylesheet' href= "{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+<body background="{{url_for('static', filename='image/fondo.jpg')}}">
+    <div id="template-bg-1">
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <div class="card p-4 text-light bg-dark mb-5">
+                <div class="card-header">
+                    <h3>Login Automatisms</h3>
+                </div>
+                <div class="card-body w-100">
+                    {% from "macro.html" import render_field %}
+                    <form action="" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+                        {{ render_field(form.email, class='form-control') }}
+                        {{ render_field(form.password, class='form-control') }}
+                        <div class="form-group mt-3">
+                            <input type="submit" value="Login" class="btn btn-success float-end text-white w-100" name="save-btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages%}
+                                <div class="alert alert-danger" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor%}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

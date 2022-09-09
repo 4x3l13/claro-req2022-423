@@ -1,0 +1,108 @@
+{% extends 'base/base.html' %}
+
+{% block extracss %}
+{% endblock %}
+
+{% block title%}
+Welcome to Claro Reports
+{% endblock%}
+
+{% block buttons%}
+{% endblock%}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-4 col-md-6">
+        <div class="card bg-primary text-white mb-3">
+            <div class="card-header">New Services or Improvements</div>
+            <div class="card-body">
+                <ul class="list-group  list-group-flush">
+                    <li class="list-group-item bg-primary text-whitebg-primary text-white">* Databases
+                        <ul class="list-group  list-group-flush">
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - To list (Permissions: Admin, User)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Create (Permissions: Admin)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Edit (Permissions: Admin)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Delete (Permissions: Admin)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item bg-primary text-whitebg-primary text-white">* Reports (User: Final)
+                        <ul class="list-group  list-group-flush">
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - To list (Permissions: All)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Create (Permissions: User)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Edit (Permissions: User)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Delete (Permissions: Admin)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Download (Permissions: All)
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item bg-primary text-whitebg-primary text-white">* Users
+                        <ul class="list-group  list-group-flush">
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - To list (Permissions: Admin, User)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Create (Permissions: Admin)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Edit (Permissions: Admin)
+                            </li>
+                            <li class="list-group-item bg-primary small text-whitebg-primary text-white">
+                                - Delete (Permissions: Admin)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <div class="card bg-warning text-white mb-3">
+            <div class="card-header">Unavailable Services</div>
+            <div class="card-body">
+                <ul class="list-group  list-group-flush">
+                    <li class="list-group-item bg-warning text-white"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-header">Available Services</div>
+            <div class="card-body">
+                <ul class="list-group  list-group-flush">
+                </ul>
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                Details
+                <ul class="list-group  list-group-flush">
+                    <li class="list-group-item bg-success small text-white">Version: 0.1</li>
+                    <li class="list-group-item bg-success small text-white">Date: September 1, 2022</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+{% endblock %}

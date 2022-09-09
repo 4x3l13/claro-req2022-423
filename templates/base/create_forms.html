@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block extracss %} 
+{% endblock %}
+
+{% block title%}
+
+{% endblock%}
+
+{% block button1%}
+<button type="button" class="btn btn-secondary" {% block button_back%}{% endblock%}>
+    <i class="far fa-arrow-alt-circle-left"></i>Back
+</button>
+{% endblock%}
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+        {% block fields %}
+        {% endblock%}
+        <div class="form-group mt-3">
+            <input type="submit" value="Save" class="btn btn-success float-end text-white w-100" name="save-btn">
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block extrajs %}
+{% endblock %}

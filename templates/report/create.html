@@ -1,0 +1,18 @@
+{% extends 'base/create_forms.html' %}
+
+{% block title %}
+Register Report
+{% endblock %}
+
+{% block button_back %}
+    onclick="window.location.href='{{ url_for('databases.index') }}'"
+{% endblock %}
+
+{% block fields %}
+    {% from "macro.html" import render_field %}
+    {{ render_field(form.name, class='form-control') }}
+    {{ render_field(form.description, class='form-control') }}
+    {{ render_field(form.queries, class='form-control') }}
+    {{ render_field(form.params, class='form-control') }}
+    {{ render_field(form.database_id, class='form-control') }}
+{% endblock %}
