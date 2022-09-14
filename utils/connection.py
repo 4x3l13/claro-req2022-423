@@ -31,8 +31,8 @@ class Connection:
         # Diccionario que almacena los datos para la conexión
         self.__connection_data = {"HOST": host, "PORT": port, "SDI": sdi, "USER": user, "PASSWORD": password}
         try:
-            # Carga las librerías clientes de Oracle
-            cx_Oracle.init_oracle_client(lib_dir=r"F:\oracle\instantclient_11_2")
+            # Carga las librerías cliente de Oracle
+            cx_Oracle.init_oracle_client(lib_dir=r"C:\oracle\instantclient_11_2")
         except Exception as exc:
             print(exc)
 
@@ -44,7 +44,9 @@ class Connection:
         try:
             self.__connection.close()
         except Exception as exc:
-            print(self.__this + inspect.stack()[0][3] + ': ' + str(exc))
+            # Variable error_message almacena la clase, el método y el error
+            error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
+            print(error_message)
 
     def _open_connection(self):
         """

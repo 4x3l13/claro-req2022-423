@@ -24,7 +24,7 @@ List of Reports
             {% endfor %}
             <td><a href="{{ url_for('reports.edit', id=row.id) }}" type="button" class="btn btn-secondary">Edit</a></td>
             <td><a href="{{ url_for('reports.delete', id=row.id) }}" type="button" class="btn btn-danger">Delete</a></td>
-            <td><a id="btn_delete" href="{{ url_for('reports.download', id=row.id) }}" type="button" class="btn btn-success">Download</a></td>
+            <td><a id="btn_download" href="{{ url_for('reports.download', id=row.id) }}" type="button" class="btn btn-success">Download</a></td>
         </tr>
     {% endfor %}
 {% endblock %}
@@ -32,8 +32,8 @@ List of Reports
 <script src="{{url_for('static', filename='js/jquery3.6.0.min.js')}}" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('#btn_delete').click(function(){
-        var href = $('#btn_delete').attr('href');
+    $('#btn_download').click(function(){
+        var href = $('#btn_download').attr('href');
         $.ajax({
             type:'GET',
             url: href,

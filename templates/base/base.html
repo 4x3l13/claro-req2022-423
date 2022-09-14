@@ -60,6 +60,19 @@
                                 <a class="nav-link" href="{{ url_for('databases.index') }}">To list</a>
                             </nav>
                         </div>
+                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFiles" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa fa-file"></i></div>
+                            Files
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseFiles" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ url_for('files.index') }}">To list</a>
+                            </nav>
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ url_for('files.historical') }}">Historical</a>
+                            </nav>
+                        </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa fa-file-excel"></i></div>
                             Reports
@@ -86,10 +99,10 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                {% with messages = get_flashed_messages() %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
-                        {% for message in messages%}
-                            <div class="alert alert-success" role="alert">
+                        {% for category, message in messages%}
+                            <div class="alert alert-{{category}}" role="alert">
                                 {{message}}
                             </div>
                         {% endfor%}

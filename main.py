@@ -7,21 +7,23 @@ Created on Fri Aug 26 08:30:00 2022
 
 from flask import Flask, render_template, redirect, url_for, session
 from flask_wtf import CSRFProtect
-import logging
 from config import DevelopmentConfig, QualityConfig
 from utils.db import db
 from routes.databases import databases
 from routes.reports import reports
 from routes.users import users
+from routes.files import files
 
 
 # Inicializar el objeto
 app = Flask(__name__, template_folder='templates')
-app.config.from_object(QualityConfig)
+# app.config.from_object(QualityConfig)
+app.config.from_object(DevelopmentConfig)
 csrf = CSRFProtect(app)
 
-app.register_blueprint(reports)
 app.register_blueprint(databases)
+app.register_blueprint(files)
+app.register_blueprint(reports)
 app.register_blueprint(users)
 
 
@@ -51,5 +53,5 @@ if __name__ == '__main__':
     db.init_app(app)
     with app.app_context():
         print(db.create_all())
-    logging.basicConfig(filename='Log/myapp.log', level=logging.DEBUG)
+    #logging.basicConfig(filename='Log/myapp.log', level=logging.DEBUG)
     app.run(host="0.0.0.0", port=8000)

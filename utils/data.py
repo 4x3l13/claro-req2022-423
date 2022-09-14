@@ -1,0 +1,22 @@
+months = [{"id": 1, "name": "January"},
+          {"id": 2, "name": "February"},
+          {"id": 3, "name": "March"},
+          {"id": 4, "name": "Abril"},
+          {"id": 5, "name": "May"},
+          {"id": 6, "name": "June"},
+          {"id": 7, "name": "July"},
+          {"id": 8, "name": "August"},
+          {"id": 9, "name": "September"},
+          {"id": 10, "name": "October"},
+          {"id": 11, "name": "November"},
+          {"id": 12, "name": "December"}]
+
+messages = {0: ["", "danger"],
+            1: ["You do not have permissions", "warning"],
+            2: ["Record was inserted successfully", "success"],
+            3: ["Record was updated", "success"],
+            4: ["Record was deleted", "success"],
+            5: ["Report was downloaded", "success"],
+            6: ["Login was successful", "success"],
+            7: ["Email or password is not valid", "warning"],
+            8: ["Record was inserted and uploaded successfully", "success"]}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Claro Automatisms</title>
+    <title>Login Claro Reports</title>
     <link rel='stylesheet' href= "{{url_for('static', filename='css/bootstrap.min.css')}}">
 </head>
 <body background="{{url_for('static', filename='image/fondo.jpg')}}">
@@ -12,7 +12,7 @@
         <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
             <div class="card p-4 text-light bg-dark mb-5">
                 <div class="card-header">
-                    <h3>Login Automatisms</h3>
+                    <h3>Login Reports</h3>
                 </div>
                 <div class="card-body w-100">
                     {% from "macro.html" import render_field %}
@@ -26,10 +26,10 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    {% with messages = get_flashed_messages() %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
                         {% if messages %}
-                            {% for message in messages%}
-                                <div class="alert alert-danger" role="alert">
+                            {% for category, message in messages%}
+                                <div class="alert alert-{{category}}" role="alert">
                                     {{message}}
                                 </div>
                             {% endfor%}
