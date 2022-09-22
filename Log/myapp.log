@@ -905,3 +905,6 @@ INFO:werkzeug:127.0.0.1 - - [10/Sep/2022 07:13:37] "[36mGET /static/js/scripts.
 INFO:werkzeug:127.0.0.1 - - [10/Sep/2022 07:13:37] "[36mGET /static/image/favicon.ico HTTP/1.1[0m" 304 -
 INFO:werkzeug: * Detected change in 'C:\\Users\\jhonatanama\\Desktop\\proyects\\2022-423\\Code\\main.py', reloading
 INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 225-098-711
+INFO:werkzeug: * Detected change in 'C:\\Users\\jhonatanama\\Desktop\\proyects\\2022-423\\Code\\page\\routes.py', reloading

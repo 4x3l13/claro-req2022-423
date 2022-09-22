@@ -32,7 +32,7 @@ class Connection:
         self.__connection_data = {"HOST": host, "PORT": port, "SDI": sdi, "USER": user, "PASSWORD": password}
         try:
             # Carga las librerías cliente de Oracle
-            cx_Oracle.init_oracle_client(lib_dir=r"C:\oracle\instantclient_11_2")
+            cx_Oracle.init_oracle_client(lib_dir=r"F:\oracle\instantclient_11_2")
         except Exception as exc:
             print(exc)
 

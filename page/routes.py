@@ -94,11 +94,11 @@ def delete(id=0):
 
 def insert_pages():
     if False:
-        for route in routes:
+        for route in data.route_page:
             try:
-                data = Page(route=route[0],
-                            name=route[1])
-                db.session.add(data)
+                insert = models.Page(route=route[0],
+                                     name=route[1])
+                db.session.add(insert)
                 db.session.commit()
             except Exception as exc:
                 # Variable error_message almacena la clase, el método y el error

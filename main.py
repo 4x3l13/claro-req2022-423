@@ -4,15 +4,16 @@ Created on Fri Aug 26 08:30:00 2022
 
 @author: Jhonatan Martínez
 """
+import logging
 
 from flask import Flask, render_template, redirect, url_for, session
 from flask_wtf import CSRFProtect
-from config import DevelopmentConfig
+from config import DevelopmentConfig, QualityConfig
 from utils.db import db
 from utils.email import email
 from database.routes import database
 from file.routes import file
-from page.routes import page
+from page.routes import page, insert_pages
 from permission.routes import permission
 from report.routes import report
 from role.routes import role
@@ -21,10 +22,10 @@ from user.routes import user
 
 
 # Inicializar el objeto
-# app = Flask(__name__, template_folder='templates')
-app = Flask(__name__)
-# app.config.from_object(QualityConfig)
-app.config.from_object(DevelopmentConfig)
+app = Flask(__name__, template_folder='templates')
+# app = Flask(__name__)
+app.config.from_object(QualityConfig)
+# app.config.from_object(DevelopmentConfig)
 csrf = CSRFProtect(app)
 
 app.register_blueprint(database)
@@ -66,7 +67,7 @@ if __name__ == '__main__':
     email.init_app(app)
     with app.app_context():
         db.create_all()
-        #insert_pages()
-    #logging.basicConfig(filename='Log/myapp.log', level=logging.DEBUG)
+        insert_pages()
+    logging.basicConfig(filename='Log/myapp.log', level=logging.DEBUG)
     app.run(host="0.0.0.0", port=8000)
 
