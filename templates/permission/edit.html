@@ -1,0 +1,124 @@
+{% extends 'base/base.html' %}
+
+{% block scripts%}
+{% endblock%}
+
+{% block title%}
+Permissions
+{% endblock%}
+
+{% block button1%}
+<button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('role.index') }}'">
+    <i class="far fa-arrow-alt-circle-left"></i>Back
+</button>
+{% endblock%}
+
+{% block button2%}
+
+{% endblock%}
+
+{% block content %}
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th>Added permissions</th>
+                <th>Permissions available</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {% if object_list.0%}
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                {% for key in object_list.0.0 %}
+                                    {% if key != 'id'%}
+                                        <th>
+                                            {{key.upper()}}
+                                        </th>
+                                    {% endif %}
+                                {% endfor %}
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <form action="" method="post">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+                                {% for row in object_list.0 %}
+                                <tr>
+                                {% for key, value in row.items() %}
+                                    {% if key != 'id'%}
+                                    <td>
+                                        {{value}}
+                                    </td>
+                                    {% endif %}
+                                {% endfor %}
+                                    <td>
+                                        <button type="submit" name="submit_param" value="del.{{row.id}}" class="btn btn-danger">
+                                            Del
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </form>
+                        </tbody>
+                    </table>
+                    {% else %}
+                        No records
+                    {% endif %}
+                </td>
+                <td>
+                    {% if object_list.1%}
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                {% for key in object_list.1.0 %}
+                                    {% if key != 'id'%}
+                                        <th>
+                                            {{key.upper()}}
+                                        </th>
+                                    {% endif %}
+                                {% endfor %}
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <form action="" method="post">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+                                {% for row in object_list.1 %}
+                                <tr>
+                                {% for key, value in row.items() %}
+                                    {% if key != 'id'%}
+                                    <td>
+                                        {{value}}
+                                    </td>
+                                    {% endif %}
+                                {% endfor %}
+                                    <td>
+                                        <button type="submit" name="submit_param" value="add.{{row.id}}" class="btn btn-primary">
+                                            Add
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </form>
+                        </tbody>
+                    </table>
+                    {% else %}
+                        No records
+                    {% endif %}
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block extrajs%}
+<!--    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>-->
+
+{% block extrajs2 %}
+{% endblock %}
+{% endblock %}

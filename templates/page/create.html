@@ -1,0 +1,15 @@
+{% extends 'base/create_forms.html' %}
+
+{% block title %}
+Register Page
+{% endblock %}
+
+{% block button_back %}
+    onclick="window.location.href='{{ url_for('page.index') }}'"
+{% endblock %}
+
+{% block fields %}
+    {% from "macro.html" import render_field %}
+    {{ render_field(form.route, class='form-control') }}
+    {{ render_field(form.name, class='form-control') }}
+{% endblock %}

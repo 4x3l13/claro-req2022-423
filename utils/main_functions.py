@@ -8,8 +8,10 @@ Created on Fri Sep 16 08:30:00 2022
 import inspect
 import io
 import os
-from flask import Response
+from flask import flash, redirect, Response, url_for
 from openpyxl import Workbook
+from utils.data import messages
+
 
 __this = 'main_functions.'
 
@@ -35,6 +37,19 @@ def create_directory(directory_name):
         print(error_message)
     finally:
         return directory_name
+
+
+def delete_file(path):
+    status = False
+    try:
+        os.remove(get_current_path() + path)
+        status = True
+    except (OSError, Exception) as exc:
+        # Variable error_message almacena la clase, el método y el error
+        error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
+        print(error_message)
+    finally:
+        return status
 
 
 def download_excel(columns, rows, file_name):
@@ -140,14 +155,7 @@ def organize_data(data_model, show_columns):
         return object_list
 
 
-def delete_file(path):
-    status = False
-    try:
-        os.remove(get_current_path() + path)
-        status = True
-    except (OSError, Exception) as exc:
-        # Variable error_message almacena la clase, el método y el error
-        error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
-        print(error_message)
-    finally:
-        return status
+def show_message(id=0, message="", url="index"):
+    flash(message=messages[id][0] if id != 0 else message,
+          category=messages[id][1])
+    return redirect(url_for(url))

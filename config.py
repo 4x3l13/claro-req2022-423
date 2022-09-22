@@ -11,6 +11,11 @@ import os
 class Config(object):
     SECRET_KEY = 'my_secret_key'
 
+    MAIL_SERVER = '172.22.85.125'
+    MAIL_PORT = "25"
+    MAIL_USERNAME = 'automatismo_GSGR@claro.com.co'
+    MAIL_PASSWORD = ''
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

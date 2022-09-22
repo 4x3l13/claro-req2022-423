@@ -1,0 +1,14 @@
+{% extends 'base/create_forms.html' %}
+
+{% block title %}
+Register Role
+{% endblock %}
+
+{% block button_back %}
+    onclick="window.location.href='{{ url_for('role.index') }}'"
+{% endblock %}
+
+{% block fields %}
+    {% from "macro.html" import render_field %}
+    {{ render_field(form.name, class='form-control') }}
+{% endblock %}

@@ -5,7 +5,7 @@ List of Reports
 {% endblock%}
 
 {% block button_new%}
-    onclick="window.location.href='{{ url_for('reports.create') }}'"
+    onclick="window.location.href='{{ url_for('report.create') }}'"
 {% endblock%}
 
 {% block table_header_actions %}
@@ -22,9 +22,9 @@ List of Reports
                     </td>
                 {% endif %}
             {% endfor %}
-            <td><a href="{{ url_for('reports.edit', id=row.id) }}" type="button" class="btn btn-secondary">Edit</a></td>
-            <td><a href="{{ url_for('reports.delete', id=row.id) }}" type="button" class="btn btn-danger">Delete</a></td>
-            <td><a id="btn_download" href="{{ url_for('reports.download', id=row.id) }}" type="button" class="btn btn-success">Download</a></td>
+            <td><a href="{{ url_for('report.edit', id=row.id) }}" type="button" class="btn btn-secondary">Edit</a></td>
+            <td><a href="{{ url_for('report.delete', id=row.id) }}" type="button" class="btn btn-danger">Delete</a></td>
+            <td><a id="btn_download" href="{{ url_for('report.download', id=row.id) }}" type="button" class="btn btn-success">Download</a></td>
         </tr>
     {% endfor %}
 {% endblock %}

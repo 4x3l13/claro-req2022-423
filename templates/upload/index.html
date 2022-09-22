@@ -1,0 +1,28 @@
+{% extends 'base/index_forms.html' %}
+
+{% block title%}
+List of Historical Files
+{% endblock%}
+
+{% block button_new%}
+    onclick="window.location.href='{{ url_for('upload.create') }}'"
+{% endblock%}
+
+{% block table_header_actions %}
+<th>ACTIONS</th>
+{% endblock %}
+
+{% block table_rows %}
+    {% for row in object_list %}
+        <tr>
+            {% for key, value in row.items() %}
+                {% if key != 'id'%}
+                    <td>
+                        {{value}}
+                    </td>
+                {% endif %}
+            {% endfor %}
+            <td><a href="{{ url_for('upload.delete', id=row.id) }}" type="button" class="btn btn-danger">Delete</a></td>
+        </tr>
+    {% endfor %}
+{% endblock %}

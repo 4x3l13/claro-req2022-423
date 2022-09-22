@@ -1,0 +1,30 @@
+{% extends 'base/index_forms.html' %}
+
+{% block title%}
+List of Roles
+{% endblock%}
+
+{% block button_new%}
+    onclick="window.location.href='{{ url_for('role.create') }}'"
+{% endblock%}
+
+{% block table_header_actions %}
+<th colspan="3">ACTIONS</th>
+{% endblock %}
+
+{% block table_rows %}
+    {% for row in object_list %}
+        <tr>
+            {% for key, value in row.items() %}
+                {% if key != 'id'%}
+                    <td>
+                        {{value}}
+                    </td>
+                {% endif %}
+            {% endfor %}
+            <td><a href="{{ url_for('role.edit', id=row.id) }}" type="button" class="btn btn-secondary">Edit</a></td>
+            <td><a href="{{ url_for('role.delete', id=row.id) }}" type="button" class="btn btn-danger">Delete</a></td>
+            <td><a href="{{ url_for('permission.edit', id=row.id) }}" type="button" class="btn btn-success">Permissions</a></td>
+        </tr>
+    {% endfor %}
+{% endblock %}
