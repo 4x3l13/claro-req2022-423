@@ -1,0 +1,39 @@
+{% extends 'base/create_forms.html' %}
+
+{% block extracss %} 
+{% endblock %}
+
+{% block title%}
+Upload File
+{% endblock%}
+
+{% block button1%}
+<button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('inventory.index') }}'">
+    <i class="far fa-arrow-alt-circle-left"></i>Back
+</button>
+{% endblock%}
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block fields %}
+        {% from "macro.html" import render_field %}
+        {{ render_field(form.year, class='form-control') }}
+        {{ render_field(form.month, class='form-control') }}
+{% endblock %}
+
+
+{% block extrajs %}
+<script src="{{url_for('static', filename='js/jquery3.6.0.min.js')}}" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#save-btn').click(function(){
+        div = document.getElementById('loading');
+        console.log(div);
+        div.style.display = "block";
+    });
+});
+
+</script>
+{% endblock %}

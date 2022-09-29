@@ -89,6 +89,16 @@
                                 <a class="nav-link" href="{{ url_for('file.index') }}">To list</a>
                             </nav>
                         </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInventories" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                            Inventories
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseInventories" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ url_for('inventory.index') }}">To list</a>
+                            </nav>
+                        </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-download"></i></div>
                             Reports
@@ -160,7 +170,7 @@
             </footer>
         </div>
     </div>
-    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
     {% block extrajs %}
     {% endblock %}

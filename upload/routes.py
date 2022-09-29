@@ -53,7 +53,7 @@ def create():
         form.year.data = datetime.now().year
         form.month.choices = [(data['id'], data['name']) for data in months]
         if request.method == 'POST':
-            path = "inventory/" + str(form.year.data) + '/' + str(form.month.data)
+            path = "files/" + str(form.year.data) + '/' + str(form.month.data)
             directory = create_directory(directory_name=path)
             file_upload = request.files[form.fileUpload.name]
             file_name = File.query.get(form.file.data).name

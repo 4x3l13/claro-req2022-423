@@ -13,6 +13,7 @@ from utils.db import db
 from utils.email import email
 from database.routes import database
 from file.routes import file
+from inventory.routes import inventory
 from page.routes import page, insert_pages
 from permission.routes import permission
 from report.routes import report
@@ -20,16 +21,16 @@ from role.routes import role
 from upload.routes import upload
 from user.routes import user
 
-
 # Inicializar el objeto
 app = Flask(__name__, template_folder='templates')
 # app = Flask(__name__)
 app.config.from_object(QualityConfig)
-# app.config.from_object(DevelopmentConfig)
+#app.config.from_object(DevelopmentConfig)
 csrf = CSRFProtect(app)
 
 app.register_blueprint(database)
 app.register_blueprint(file)
+app.register_blueprint(inventory)
 app.register_blueprint(page)
 app.register_blueprint(permission)
 app.register_blueprint(report)
@@ -63,11 +64,10 @@ if __name__ == '__main__':
     # El debug en true permite ver cambios mientras se está editando
     csrf.init_app(app)
     db.init_app(app)
-
     email.init_app(app)
     with app.app_context():
         db.create_all()
         insert_pages()
-    logging.basicConfig(filename='Log/myapp.log', level=logging.DEBUG)
+    #logging.basicConfig(filename='Log/myapp.log', level=logging.DEBUG)
     app.run(host="0.0.0.0", port=8000)
 

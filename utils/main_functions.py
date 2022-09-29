@@ -39,10 +39,13 @@ def create_directory(directory_name):
         return directory_name
 
 
-def delete_file(path):
+def delete_file(path, fullpath=False):
     status = False
     try:
-        os.remove(get_current_path() + path)
+        if fullpath :
+            os.remove(path)
+        else:
+            os.remove(get_current_path() + path)
         status = True
     except (OSError, Exception) as exc:
         # Variable error_message almacena la clase, el método y el error

@@ -18,12 +18,17 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <div id="loading" style="display: none">
+        <center>
+            <img src="{{ url_for('static', filename='image/processing.gif')}}" width="150" height="75">
+        </center>
+    </div>
+    <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
         {% block fields %}
         {% endblock%}
         <div class="form-group mt-3">
-            <input type="submit" value="Save" class="btn btn-success float-end text-white w-100" name="save-btn">
+            <input type="submit" value="Save" class="btn btn-success float-end text-white w-100" name="save-btn" id="save-btn">
         </div>
     </form>
 
