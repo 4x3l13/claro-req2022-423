@@ -21,8 +21,6 @@ templates = data.templates[this]
 
 
 def show_error(message):
-    print(message.split(sep=".")[1].split(sep=":")[0])
-    print(pages["index"])
     return show_message(id=0,
                         message=message,
                         url=pages["index"] if message.split(sep=".")[1].split(sep=":")[0] != 'index' else 'index')
@@ -104,6 +102,6 @@ def insert_pages():
                 # Variable error_message almacena la clase, el método y el error
                 db.session.rollback()
                 error_message = 'page.models.insert_pages: ' + str(exc)
-                print(error_message)
+                print("ERROR: ", error_message)
             finally:
                 db.session.close()

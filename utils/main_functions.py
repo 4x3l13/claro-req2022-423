@@ -34,7 +34,7 @@ def create_directory(directory_name):
     except (OSError, Exception) as exc:
         # Variable error_message almacena la clase, el método y el error
         error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
-        print(error_message)
+        print("ERROR: ", error_message)
     finally:
         return directory_name
 
@@ -50,7 +50,7 @@ def delete_file(path, fullpath=False):
     except (OSError, Exception) as exc:
         # Variable error_message almacena la clase, el método y el error
         error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
-        print(error_message)
+        print("ERROR: ", error_message)
     finally:
         return status
 
@@ -96,7 +96,7 @@ def download_excel(columns, rows, file_name):
     except Exception as exc:
         # Variable error_message almacena la clase, el método y el error
         error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
-        print(error_message)
+        print("ERROR: ", error_message)
 
 
 def get_current_path():
@@ -116,7 +116,7 @@ def get_current_path():
     except Exception as exc:
         # Variable error_message almacena la clase, el método y el error
         error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
-        print(error_message)
+        print("ERROR: ", error_message)
     # Return answer object.
     return path
 
@@ -153,7 +153,7 @@ def organize_data(data_model, show_columns):
     except Exception as exc:
         # Variable error_message almacena la clase, el método y el error
         error_message = __this + inspect.stack()[0][3] + ': ' + str(exc)
-        print(error_message)
+        print("ERROR: ", error_message)
     finally:
         return object_list
 

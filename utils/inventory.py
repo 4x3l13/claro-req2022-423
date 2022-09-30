@@ -3,6 +3,7 @@ import re
 import os
 import pandas as pd
 from utils.main_functions import get_current_path
+from file.models import File
 
 
 def before_date(year, month):
@@ -16,6 +17,16 @@ def before_date(year, month):
 
 def clean_null(df, column):
     return df[df[column].notna()]
+
+
+def columns_to_read():
+    set_columns = set()
+    data = File.query.all()
+    for row in data:
+        separate_columns = row.columns.split(sep=",")
+        for column in separate_columns:
+            set_columns.add(column.lower())
+    return set_columns
 
 
 def delete_duplicates(df):
@@ -54,7 +65,7 @@ def rename_columns(current_columns):
 
 def save_dataframe_to_excel(df, file):
     df.to_excel(file, index=False)
-    print("File saved: ", file)
+    print("INFO: ", "File saved: ", file)
 
 
 def merge_clean_dataframes(df1, df2):
@@ -98,14 +109,13 @@ class Inventory:
             # dataframe for the log files
             df_log = pd.DataFrame()
             # columns to read from dataframes
-            columns_to_read = ['username', 'profile', 'locked_status', 'last_login', 'networkelement']
             # read each file
             for file in files:
-                print("Reading file: ", file)
+                print("INFO: ", "Reading file: ", file)
                 # get extension from file
                 extension = file.split(sep=".")[-1].lower()
                 if extension == "xlsx" and file.startswith("GSGR"):
-                    df_excel = pd.concat([df_excel, self.read_sheets(self.path_upload + file, columns_to_read)], ignore_index=True)
+                    df_excel = pd.concat([df_excel, self.read_sheets(self.path_upload + file, columns_to_read())], ignore_index=True)
                 elif extension == "log":
                     df_log = pd.concat([df_log, self.read_log(self.path_upload + file)], ignore_index=True)
             # join excel and log dataframes
@@ -115,7 +125,7 @@ class Inventory:
         except Exception as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: ", error_message)
         finally:
             return df_inventory
 
@@ -130,14 +140,12 @@ class Inventory:
             df_sheets = pd.DataFrame()
             # read eac sheet
             for sheet in sheets:
-                print("Reading sheet: ", sheet)
+                print("INFO:", "Reading sheet: ", sheet)
                 # dataframe for eac sheet
                 df_sheet = pd.read_excel(workbook, sheet_name=sheet)
                 # validate if it's necessary to organize the sheet
-                print(type(df_sheet))
                 if sheet in self.sheets_to_organize:
                     df_sheet = organize_sheet(df_sheet, sheet)
-                print(type(df_sheet))
                 # get current columns from dataframe (sheet)
                 current_columns = df_sheet.columns.values
                 # format column names to lowercase
@@ -163,7 +171,7 @@ class Inventory:
         except Exception as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: ", error_message)
         finally:
             return df_sheets
 
@@ -252,7 +260,7 @@ class Inventory:
         except Exception as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: ", error_message)
         finally:
             return df
 
@@ -261,13 +269,13 @@ class Inventory:
         try:
             year, month = before_date(self.year, self.month)
             file = self.current_path + "/" + str(year) + "/" + str(month) + "/CredentialInventory.xlsx"
-            print("Reading file: CredentialInventory.xlsx")
+            print("INFO: ", "Reading file: CredentialInventory.xlsx")
             df_last_inventory = pd.read_excel(file)
             df_last_inventory = df_last_inventory[['username', 'application', 'ID', 'first_name', 'surname', 'position', 'user_email', 'area', 'approver']]
             df_last_inventory = delete_duplicates(df_last_inventory)
         except Exception as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: ", error_message)
         finally:
             return df_last_inventory

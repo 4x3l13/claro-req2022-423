@@ -24,8 +24,6 @@ templates = data.templates[this]
 
 
 def show_error(message):
-    print(message.split(sep=".")[1].split(sep=":")[0])
-    print(pages["index"])
     return show_message(id=0,
                         message=message,
                         url=pages["index"] if message.split(sep=".")[1].split(sep=":")[0] != 'index' else 'index')

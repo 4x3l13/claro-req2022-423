@@ -34,7 +34,7 @@ class Connection:
             # Carga las librerías cliente de Oracle
             cx_Oracle.init_oracle_client(lib_dir=r"F:\oracle\instantclient_11_2")
         except Exception as exc:
-            print(exc)
+            print("ERROR: " + exc)
 
     def _close_connection(self):
         """
@@ -46,7 +46,7 @@ class Connection:
         except Exception as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: " + error_message)
 
     def _open_connection(self):
         """
@@ -64,7 +64,7 @@ class Connection:
         except Exception as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: " + error_message)
 
     def read_data(self, query, datatype="dict"):
         """
@@ -103,6 +103,6 @@ class Connection:
         except (ConnectionError, Exception) as exc:
             # Variable error_message almacena la clase, el método y el error
             error_message = self.__this + inspect.stack()[0][3] + ': ' + str(exc)
-            print(error_message)
+            print("ERROR: " + error_message)
         finally:
             self._close_connection()

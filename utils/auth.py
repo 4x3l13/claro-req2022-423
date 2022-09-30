@@ -21,7 +21,7 @@ def has_permission(page):
     except Exception as exc:
         # Variable error_message almacena la clase, el método y el error
         error_message = 'permission.queries.has_permission: ' + str(exc)
-        print(error_message)
+        print("ERROR: " + error_message)
     finally:
         return can_enter
 
